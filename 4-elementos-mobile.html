@@ -15,6 +15,28 @@
 
 @page { size: A4 portrait; margin: 0; }
 
+@media screen {
+  body {
+    background: #0c1938;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .cover {
+    width: min(210mm, 100vw);
+    height: auto;
+    min-height: 100svh;
+    page-break-after: unset;
+  }
+  .el-page {
+    width: min(210mm, 100vw);
+    height: auto;
+    min-height: unset;
+    page-break-after: unset;
+  }
+}
+
 @media print {
   .cover-title {
     background: none !important;
