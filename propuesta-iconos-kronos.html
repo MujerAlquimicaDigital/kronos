@@ -443,6 +443,63 @@
       gap: 20px;
     }
 
+    /* ── DERECHOS EXPLAINER ── */
+    .rights-explainer {
+      display: flex;
+      gap: 0;
+      margin-bottom: 48px;
+      border: 1px solid rgba(212,184,126,.15);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .rights-col {
+      flex: 1;
+      padding: 28px 24px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .rights-divider {
+      width: 1px;
+      background: rgba(212,184,126,.15);
+    }
+
+    .rights-icon {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .rights-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .rights-desc {
+      font-size: 13px;
+      color: rgba(233,221,195,.55);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* ── GROUP LABEL ── */
+    .group-label {
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(212,184,126,.15);
+    }
+
+    .group-title {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-dk);
+    }
+
     .footer-mad-wrap {
       background: #e9ddc3;
       border: 1px solid rgba(212,184,126,.4);
@@ -526,8 +583,8 @@
     </div>
     <div class="del-card">
       <span class="del-icon">✦</span>
-      <div class="del-title">Derechos exclusivos</div>
-      <div class="del-desc">Uso comercial completo. Los archivos y los derechos pasan a ser de Kronos al 100%.</div>
+      <div class="del-title">Derechos flexibles</div>
+      <div class="del-desc">Elige entre cesión total de derechos o licencia de uso comercial, según tu presupuesto.</div>
     </div>
     <div class="del-card">
       <span class="del-icon">📁</span>
@@ -544,60 +601,127 @@
   <span class="section-tag">Inversión</span>
   <h2>Elige la <strong>opción</strong><br>que mejor se adapte</h2>
   <p class="lead">
-    Dos caminos para construir la identidad visual de tu colección.
+    Cuatro variantes según el alcance del trabajo y el tipo de derechos que prefieras.
   </p>
 
-  <div class="options">
+  <!-- Explicación derechos -->
+  <div class="rights-explainer">
+    <div class="rights-col">
+      <div class="rights-icon">©</div>
+      <div class="rights-title">Con cesión de derechos</div>
+      <div class="rights-desc">Los íconos pasan a ser 100% de Kronos. Puedes registrarlos, son exclusivos y nadie más puede usarlos.</div>
+    </div>
+    <div class="rights-divider"></div>
+    <div class="rights-col">
+      <div class="rights-icon">🔑</div>
+      <div class="rights-title">Con licencia de uso</div>
+      <div class="rights-desc">Kronos puede usarlos comercialmente en productos y redes. La autoría del diseño permanece con la diseñadora.</div>
+    </div>
+  </div>
 
-    <!-- Opción 1 -->
+  <!-- Grupo A: 4 Elementos -->
+  <div class="group-label">
+    <span class="group-title">4 Elementos — Fuego · Agua · Tierra · Aire</span>
+  </div>
+  <div class="options">
     <div class="option-card">
       <div class="option-header">
-        <span class="option-num">Opción 01</span>
-        <div class="option-name">Los 4 Elementos</div>
-        <div class="option-subtitle">Base de la identidad Kronos</div>
+        <span class="option-num">Opción A1</span>
+        <div class="option-name">4 Elementos</div>
+        <div class="option-subtitle">Con cesión de derechos</div>
       </div>
       <div class="option-price-wrap">
         <div class="price-amount"><span class="price-currency">$</span>350</div>
-        <div class="price-note">USD · pago único · derechos incluidos</div>
+        <div class="price-note">USD · pago único</div>
       </div>
       <div class="option-includes">
         <div class="includes-title">Qué incluye</div>
         <ul class="includes-list">
-          <li>4 íconos exclusivos (Fuego, Agua, Tierra, Aire)</li>
+          <li>4 íconos (Fuego, Agua, Tierra, Aire)</li>
           <li>2 rondas de revisión</li>
           <li>Archivos AI editables + PDF</li>
-          <li>Derechos comerciales completos</li>
+          <li>Derechos de autor cedidos a Kronos</li>
           <li>Entrega en 2 semanas</li>
         </ul>
       </div>
     </div>
 
-    <!-- Opción 2 (destacada) -->
-    <div class="option-card featured">
-      <div class="featured-badge">Recomendado</div>
+    <div class="option-card">
       <div class="option-header">
-        <span class="option-num">Opción 02</span>
-        <div class="option-name">Pack Completo</div>
-        <div class="option-subtitle">4 Elementos + 12 Zodiacales</div>
+        <span class="option-num">Opción A2</span>
+        <div class="option-name">4 Elementos</div>
+        <div class="option-subtitle">Con licencia de uso comercial</div>
       </div>
       <div class="option-price-wrap">
-        <div class="price-amount"><span class="price-currency">$</span>900</div>
-        <div class="price-note">USD · pago único · derechos incluidos</div>
+        <div class="price-amount"><span class="price-currency">$</span>220</div>
+        <div class="price-note">USD · pago único</div>
       </div>
       <div class="option-includes">
         <div class="includes-title">Qué incluye</div>
         <ul class="includes-list">
-          <li>16 íconos exclusivos en total</li>
+          <li>4 íconos (Fuego, Agua, Tierra, Aire)</li>
+          <li>2 rondas de revisión</li>
+          <li>Archivos AI editables + PDF</li>
+          <li>Licencia uso comercial ilimitado</li>
+          <li>Entrega en 2 semanas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grupo B: Pack Completo -->
+  <div class="group-label" style="margin-top: 40px;">
+    <span class="group-title">Pack Completo — 4 Elementos + 12 Signos del Zodíaco</span>
+  </div>
+  <div class="options">
+    <div class="option-card featured">
+      <div class="featured-badge">Recomendado</div>
+      <div class="option-header">
+        <span class="option-num">Opción B1</span>
+        <div class="option-name">Pack Completo</div>
+        <div class="option-subtitle">Con cesión de derechos</div>
+      </div>
+      <div class="option-price-wrap">
+        <div class="price-amount"><span class="price-currency">$</span>900</div>
+        <div class="price-note">USD · pago único</div>
+      </div>
+      <div class="option-includes">
+        <div class="includes-title">Qué incluye</div>
+        <ul class="includes-list">
+          <li>16 íconos en total</li>
           <li>4 Elementos + 12 Signos del Zodíaco</li>
-          <li>2 rondas de revisión por cada set</li>
-          <li>Archivos AI editables + PDF de cada ícono</li>
-          <li>Derechos comerciales completos y exclusivos</li>
-          <li>Coherencia visual garantizada entre sets</li>
+          <li>2 rondas de revisión por set</li>
+          <li>Archivos AI editables + PDF</li>
+          <li>Derechos de autor cedidos a Kronos</li>
+          <li>Coherencia visual garantizada</li>
         </ul>
       </div>
     </div>
 
+    <div class="option-card">
+      <div class="option-header">
+        <span class="option-num">Opción B2</span>
+        <div class="option-name">Pack Completo</div>
+        <div class="option-subtitle">Con licencia de uso comercial</div>
+      </div>
+      <div class="option-price-wrap">
+        <div class="price-amount"><span class="price-currency">$</span>580</div>
+        <div class="price-note">USD · pago único</div>
+      </div>
+      <div class="option-includes">
+        <div class="includes-title">Qué incluye</div>
+        <ul class="includes-list">
+          <li>16 íconos en total</li>
+          <li>4 Elementos + 12 Signos del Zodíaco</li>
+          <li>2 rondas de revisión por set</li>
+          <li>Archivos AI editables + PDF</li>
+          <li>Licencia uso comercial ilimitado</li>
+          <li>Coherencia visual garantizada</li>
+        </ul>
+      </div>
+    </div>
   </div>
+
 </section>
 
 <hr class="sep">
