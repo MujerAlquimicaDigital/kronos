@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kronos — Revisión de Piezas de Lanzamiento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Michelia';
+      src: url('assets-propuesta-iconos/Michelia.otf') format('opentype');
+    }
+
+    :root {
+      --mad-azul:          #263549;
+      --mad-dorado:        #d4b87e;
+      --mad-dorado-claro:  #f7d795;
+      --mad-dorado-oscuro: #a18348;
+      --mad-crema:         #e9ddc3;
+      --k-dark:            #0d1b2e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: 'Raleway', sans-serif;
+      background: var(--k-dark);
+      color: var(--mad-crema);
+    }
+
+    /* ── SLIDES ── */
+    .slide {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .55s ease;
+      overflow-y: auto;
+      padding: 40px 0;
+    }
+    .slide.active { opacity: 1; pointer-events: all; }
+
+    /* ── NAV ── */
+    .nav-btn {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      z-index: 200;
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 1px solid rgba(212,184,126,.25);
+      background: rgba(212,184,126,.08);
+      color: var(--mad-dorado);
+      font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .nav-btn:hover { background: rgba(212,184,126,.22); border-color: var(--mad-dorado); }
+    #prev { left: 16px; }
+    #next { right: 16px; }
+
+    /* ── DOTS ── */
+    .dots {
+      position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 200;
+    }
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      border: 1px solid rgba(212,184,126,.4);
+      background: transparent; cursor: pointer; transition: all .2s;
+    }
+    .dot.on { background: var(--mad-dorado); transform: scale(1.4); border-color: var(--mad-dorado); }
+
+    /* ── COUNTER ── */
+    .counter {
+      position: fixed; top: 20px; right: 20px; z-index: 200;
+      font-size: 10px; letter-spacing: 2px; color: rgba(212,184,126,.5);
+    }
+
+    /* ── PORTADA ── */
+    .s-portada {
+      background: var(--k-dark);
+      background-image:
+        radial-gradient(ellipse 70% 55% at 50% 40%, rgba(212,184,126,.09) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 20%, rgba(212,184,126,.06) 0%, transparent 60%);
+      flex-direction: column; gap: 0; text-align: center;
+    }
+    .portada-mad { height: 54px; object-fit: contain; margin-bottom: 28px; opacity: .85; }
+    .portada-logo { height: 90px; object-fit: contain; }
+    .portada-line {
+      width: 60px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--mad-dorado), transparent);
+      margin: 22px auto 20px;
+    }
+    .portada-tagline {
+      font-family: 'Michelia', serif;
+      font-size: 18px; color: rgba(233,221,195,.65); letter-spacing: .5px;
+      margin-bottom: 10px;
+    }
+    .portada-sub {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(233,221,195,.35);
+    }
+
+    /* ── SECCIÓN GENÉRICA ── */
+    .section-inner { max-width: 820px; width: 90%; margin: 0 auto; }
+    .eyebrow {
+      font-size: 9.5px; letter-spacing: 3.5px; text-transform: uppercase;
+      color: var(--mad-dorado); margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Michelia', serif;
+      font-size: 34px; color: var(--mad-crema); line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .divider {
+      width: 44px; height: 1px;
+      background: linear-gradient(90deg, var(--mad-dorado), transparent);
+      margin-bottom: 22px;
+    }
+    .s-dark {
+      background: var(--k-dark);
+      background-image: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(212,184,126,.07) 0%, transparent 70%);
+      flex-direction: column; gap: 0;
+    }
+
+    /* ── REELS DE ELEMENTOS ── */
+    .reel-header { text-align: center; margin-bottom: 22px; }
+    .reel-video {
+      height: 62vh; max-height: 560px; width: auto;
+      aspect-ratio: 9 / 16;
+      border-radius: 14px;
+      object-fit: cover;
+      border: 1px solid rgba(212,184,126,.2);
+      box-shadow: 0 8px 40px rgba(0,0,0,.5);
+      background: #000;
+    }
+    .reel-caption {
+      margin-top: 14px; font-size: 11px; color: rgba(233,221,195,.4);
+      letter-spacing: 1px; text-align: center;
+    }
+
+    /* ── GUIONES (timeline) ── */
+    .guion-header { text-align: center; margin-bottom: 20px; }
+    .guion-meta {
+      font-size: 11.5px; color: rgba(233,221,195,.45); font-style: italic;
+      margin-bottom: 4px;
+    }
+    .guion-scroll {
+      width: 92%; max-width: 780px;
+      max-height: 62vh; overflow-y: auto;
+      padding: 4px 16px 4px 0;
+    }
+    .guion-scroll::-webkit-scrollbar { width: 5px; }
+    .guion-scroll::-webkit-scrollbar-thumb { background: rgba(212,184,126,.3); border-radius: 4px; }
+    .beat {
+      border-left: 2px solid rgba(212,184,126,.4);
+      padding-left: 18px; margin-bottom: 22px; position: relative;
+    }
+    .beat::before {
+      content: ''; position: absolute; left: -5px; top: 2px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--mad-dorado);
+    }
+    .beat-time {
+      font-family: 'Michelia', serif;
+      font-size: 13px; color: var(--mad-dorado-claro); margin-bottom: 6px;
+    }
+    .beat-row { display: flex; gap: 10px; margin-bottom: 5px; font-size: 12px; line-height: 1.5; }
+    .beat-label {
+      flex-shrink: 0; width: 92px;
+      font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(212,184,126,.6); padding-top: 2px;
+    }
+    .beat-value { color: rgba(233,221,195,.85); font-weight: 300; }
+    .beat-value.audio { color: var(--mad-crema); font-style: italic; }
+    .beat-value.texto { color: var(--mad-dorado-claro); }
+
+    /* ── TARJETAS ── */
+    .tarjetas-header { text-align: center; margin-bottom: 26px; }
+    .tarjeta-pair { display: flex; gap: 26px; align-items: flex-start; justify-content: center; }
+    .tarjeta-col { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .tarjeta-img {
+      height: 54vh; max-height: 440px; width: auto;
+      border-radius: 10px; object-fit: contain;
+      border: 1px solid rgba(212,184,126,.15);
+      box-shadow: 0 8px 40px rgba(0,0,0,.5);
+    }
+    .tarjeta-side {
+      font-size: 9.5px; color: rgba(212,184,126,.7);
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
+
+    /* ── PROPUESTA ÍCONO SIGNOS ── */
+    .signos-header { text-align: center; margin-bottom: 30px; }
+    .zodiaco-wrap {
+      background: #fff;
+      border-radius: 14px;
+      padding: 28px 34px;
+      border: 1px solid rgba(212,184,126,.15);
+      box-shadow: 0 8px 40px rgba(0,0,0,.5);
+    }
+    .zodiaco-img { width: 78vw; max-width: 980px; height: auto; display: block; }
+
+    /* ── CIERRE ── */
+    .s-cierre { flex-direction: column; gap: 18px; text-align: center; }
+    .cierre-logo { height: 60px; object-fit: contain; opacity: .8; }
+    .cierre-line {
+      width: 44px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--mad-dorado), transparent);
+      margin: 0 auto;
+    }
+    .cierre-text { font-family: 'Michelia', serif; font-size: 18px; color: rgba(233,221,195,.6); }
+    .cierre-contact {
+      font-size: 11px; letter-spacing: 2px;
+      color: rgba(212,184,126,.5); text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+<button class="nav-btn" id="prev">&#8592;</button>
+<button class="nav-btn" id="next">&#8594;</button>
+<div class="dots" id="dots"></div>
+<div class="counter" id="counter"></div>
+
+<!-- SLIDE 0 · PORTADA -->
+<div class="slide s-portada active" data-index="0">
+  <div style="text-align:center;display:flex;flex-direction:column;align-items:center;">
+    <img src="assets-propuesta-iconos/mad-icono.png" class="portada-mad" alt="Mujer Alquímica Digital">
+    <img src="assets-propuesta-iconos/logo-sin-fondo-dorado.png" class="portada-logo" alt="Kronos">
+    <div class="portada-line"></div>
+    <p class="portada-tagline">Revisión de Piezas de Lanzamiento</p>
+    <p class="portada-sub">Reels de Elementos · Guiones · Tarjetas · Mujer Alquímica Digital</p>
+  </div>
+</div>
+
+<!-- SLIDE 1 · REEL AIRE -->
+<div class="slide s-dark" data-index="1">
+  <div class="reel-header section-inner">
+    <p class="eyebrow">Reel de Expectativa</p>
+    <h2 class="section-title">Elemento Aire</h2>
+    <div class="divider" style="margin:0 auto 0;"></div>
+  </div>
+  <video class="reel-video" src="piezas-lanzamiento/aire/aire-kronos/aire-kronos.mp4" poster="piezas-lanzamiento/aire/aire-kronos/aire-kronos-Cover.jpg" controls playsinline></video>
+</div>
+
+<!-- SLIDE 2 · REEL FUEGO -->
+<div class="slide s-dark" data-index="2">
+  <div class="reel-header section-inner">
+    <p class="eyebrow">Reel de Expectativa</p>
+    <h2 class="section-title">Elemento Fuego</h2>
+    <div class="divider" style="margin:0 auto 0;"></div>
+  </div>
+  <video class="reel-video" src="piezas-lanzamiento/fuego/fuego-kronos/fuego-kronos.mp4" poster="piezas-lanzamiento/fuego/fuego-kronos/fuego-kronos-Cover.jpg" controls playsinline></video>
+</div>
+
+<!-- SLIDE 3 · REEL TIERRA -->
+<div class="slide s-dark" data-index="3">
+  <div class="reel-header section-inner">
+    <p class="eyebrow">Reel de Expectativa</p>
+    <h2 class="section-title">Elemento Tierra</h2>
+    <div class="divider" style="margin:0 auto 0;"></div>
+  </div>
+  <video class="reel-video" src="piezas-lanzamiento/tierra/tierra-kronos/tierra-kronos.mp4" poster="piezas-lanzamiento/tierra/tierra-kronos/tierra-kronos-Cover.jpg" controls playsinline></video>
+</div>
+
+<!-- SLIDE 4 · REEL AGUA -->
+<div class="slide s-dark" data-index="4">
+  <div class="reel-header section-inner">
+    <p class="eyebrow">Reel de Expectativa</p>
+    <h2 class="section-title">Elemento Agua</h2>
+    <div class="divider" style="margin:0 auto 0;"></div>
+  </div>
+  <video class="reel-video" src="piezas-lanzamiento/agua/agua-kronos/agua-kronos.mp4" poster="piezas-lanzamiento/agua/agua-kronos/agua-kronos-Cover.jpg" controls playsinline></video>
+</div>
+
+<!-- SLIDE 5 · GUION CÓMO NACE KRONOS -->
+<div class="slide s-dark" data-index="5">
+  <div class="guion-header section-inner">
+    <p class="eyebrow">Guion · Reel</p>
+    <h2 class="section-title">Cómo Nace Kronos</h2>
+    <div class="divider" style="margin:0 auto 6px;"></div>
+    <p class="guion-meta">Voz en off de Flor + tomas a cámara directa · ~95 segundos</p>
+  </div>
+  <div class="guion-scroll">
+
+    <div class="beat">
+      <p class="beat-time">0:00 – 0:08</p>
+      <div class="beat-row"><span class="beat-label">Visual</span><span class="beat-value">Primer plano cerrado de las manos de Flor entrando en agua tibia. Silencio casi total. Corte a sus ojos mirando a cámara, en silencio.</span></div>
+      <div class="beat-row"><span class="beat-label">Audio</span><span class="beat-value audio">"Hubo un tiempo en el que no sabía quién era yo sin estar sirviendo a alguien más."</span></div>
+    </div>
+
+    <div class="beat">
+      <p class="beat-time">0:08 – 0:22</p>
+      <div class="beat-row"><span class="beat-label">Visual</span><span class="beat-value">Fotos/recreación de manos ocupadas — cocinando, cargando, atendiendo a otros. Luz apagada, tonos fríos.</span></div>
+      <div class="beat-row"><span class="beat-label">Audio</span><span class="beat-value audio">"Crecí creyendo que mi lugar era servir. Que mi valor estaba en lo que hacía por los demás, no en lo que yo era. Regalé mi creatividad. Regalé mis ideas. Regalé años enteros a proyectos que no eran míos."</span></div>
+      <div class="beat-row"><span class="beat-label">Texto</span><span class="beat-value texto">"Antes de Kronos, no tenía nada que fuera solo mío."</span></div>
+    </div>
+
+    <div class="beat">
+      <p class="beat-time">0:22 – 0:35</p>
+      <div class="beat-row"><span class="beat-label">Visual</span><span class="beat-value">Primeros planos de manos, rostro parcial, texturas — agua, sal, tela. Ritmo lento.</span></div>
+      <div class="beat-row"><span class="beat-label">Audio</span><span class="beat-value audio">"Viví una relación que me enseñó lo que no quería volver a vivir. Y mi cuerpo empezó a hablar de lo que yo no me atrevía a decir en voz alta."</span></div>
+    </div>
+
+    <div class="beat">
+      <p class="beat-time">0:35 – 0:48</p>
+      <div class="beat-row"><span class="beat-label">Visual</span><span class="beat-value">Corte más rápido. Flor a cámara directa, con más luz, mirando de frente.</span></div>
+      <div class="beat-row"><span class="beat-label">Audio</span><span class="beat-value audio">"Y un día me pregunté: ¿y ahora qué vas a hacer? Porque ya no quería seguir regalándome a todo lo que no era mío."</span></div>
+      <div class="beat-row"><span class="beat-label">Texto</span><span class="beat-value texto">"Despertó el Cronos que había en mí."</span></div>
+    </div>
+
+    <div class="beat">
+      <p class="beat-time">0:48 – 0:60</p>
+      <div class="beat-row"><span class="beat-label">Visual</span><span class="beat-value">Manos de Flor empezando a trabajar — sal, canela, vela encendiéndose, agua. Luz cálida entra por primera vez.</span></div>
+      <div class="beat-row"><span class="beat-label">Audio</span><span class="beat-value audio">"Empecé por mis propias manos. Sal, canela, una vela encendida, y la intención de volver a mí. No sabía que ahí estaba naciendo algo más grande que un jabón."</span></div>
+    </div>
+
+    <div class="beat">
+      <p class="beat-time">0:60 – 0:78</p>
+      <div class="beat-row"><span class="beat-label">Visual</span><span class="beat-value">El jabón terminado, bajo agua corriendo, espuma. Corte a Flor sonriendo levemente mientras lo sostiene, a cámara.</span></div>
+      <div class="beat-row"><span class="beat-label">Audio</span><span class="beat-value audio">"Cada jabón que hago hoy lleva esa misma intención. No es solo cuidar la piel — es un ritual para volver a casa, a una misma. Por eso Kronos no es un jabón cualquiera. Es el puente entre lo que soy por dentro y lo que toco todos los días con mis manos."</span></div>
+      <div class="beat-row"><span class="beat-label">Texto</span><span class="beat-value texto">"Kronos une el cielo con tus manos."</span></div>
+    </div>
+
+    <div class="beat" style="margin-bottom:4px;">
+      <p class="beat-time">0:78 – 1:05</p>
+      <div class="beat-row"><span class="beat-label">Visual</span><span class="beat-value">Flor a cámara, luz cálida, plano medio, sin prisa.</span></div>
+      <div class="beat-row"><span class="beat-label">Audio</span><span class="beat-value audio">"Si hoy sientes que diste todo por los demás y se te olvidó dar algo para ti… no es tan difícil. Sí puedes. Yo también empecé así, con mis manos, un jabón, y las ganas de volver a mí."</span></div>
+      <div class="beat-row"><span class="beat-label">Texto</span><span class="beat-value texto">"Kronos · Jabón Orgánico &amp; Ritual — @kronosritual"</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SLIDE 6 · GUION EL DIFERENCIAL -->
+<div class="slide s-dark" data-index="6">
+  <div class="guion-header section-inner">
+    <p class="eyebrow">Guion · Reel</p>
+    <h2 class="section-title">El Diferencial de Kronos</h2>
+    <div class="divider" style="margin:0 auto 6px;"></div>
+    <p class="guion-meta">Voz en off sobre imágenes de proceso (Flor no habla a cámara) · ~82 segundos</p>
+  </div>
+  <div class="guion-scroll">
+
+    <div class="beat">
+      <p class="beat-time">0:00 – 0:10</p>
+      <div class="beat-row"><span class="beat-label">Visual</span><span class="beat-value">Manos encendiendo un fósforo, la llama prendiendo una vela. Cámara muy cerca, luz cálida, silencio casi total.</span></div>
+      <div class="beat-row"><span class="beat-label">Audio</span><span class="beat-value audio">"Quiero mostrarte la intención que pongo en cada jabón que hago. Mi deseo es que, cada vez que lo uses, sientas calma real en tu cuerpo."</span></div>
+    </div>
+
+    <div class="beat">
+      <p class="beat-time">0:10 – 0:28</p>
+      <div class="beat-row"><span class="beat-label">Visual</span><span class="beat-value">Agua cayendo despacio sobre las manos. Corte a la vela encendida, luego a los cuatro ingredientes (canela, cacao, lavanda, manzanilla) en fila.</span></div>
+      <div class="beat-row"><span class="beat-label">Audio</span><span class="beat-value audio">"Para mí, el agua siempre fue un puente. Entre lo que cargamos y lo que soltamos. Entre lo que pesa y lo que se limpia. Por eso ningún jabón mío es solo un jabón — es una herramienta para volver a ti."</span></div>
+    </div>
+
+    <div class="beat">
+      <p class="beat-time">0:28 – 0:50</p>
+      <div class="beat-row"><span class="beat-label">Visual</span><span class="beat-value">Manos partiendo canela, mezclando cacao, sal cayendo. Manos sosteniendo el jabón en formación, vela de fondo. Agua vertiéndose despacio.</span></div>
+      <div class="beat-row"><span class="beat-label">Audio</span><span class="beat-value audio">"Cada uno lleva un ingrediente real, elegido para tu elemento: canela, cacao, lavanda, manzanilla. Pero antes de eso hay algo que no se ve: sal, una vela encendida, una afirmación repetida en silencio, un número que sostengo en la mente mientras mis manos trabajan."</span></div>
+    </div>
+
+    <div class="beat">
+      <p class="beat-time">0:50 – 0:63</p>
+      <div class="beat-row"><span class="beat-label">Visual</span><span class="beat-value">Montaje rápido de texturas distintas: la superficie de cada jabón terminado, pequeñas variaciones visibles entre piezas del mismo elemento.</span></div>
+      <div class="beat-row"><span class="beat-label">Audio</span><span class="beat-value audio">"Ninguno de mis jabones sale exactamente igual al otro. Porque así somos: cada proceso es distinto, y cada momento en que te detienes a sentir, también lo es."</span></div>
+    </div>
+
+    <div class="beat">
+      <p class="beat-time">0:63 – 0:75</p>
+      <div class="beat-row"><span class="beat-label">Visual</span><span class="beat-value">Los 4 jabones terminados en línea, luz uniforme y cálida, sin empaque.</span></div>
+      <div class="beat-row"><span class="beat-label">Audio</span><span class="beat-value audio">"Kronos es ese puente. Entre el cielo... y tus manos."</span></div>
+      <div class="beat-row"><span class="beat-label">Texto</span><span class="beat-value texto">"Kronos une el cielo con tus manos."</span></div>
+    </div>
+
+    <div class="beat" style="margin-bottom:4px;">
+      <p class="beat-time">0:75 – 0:85</p>
+      <div class="beat-row"><span class="beat-label">Visual</span><span class="beat-value">Corte a manos aplicando el jabón bajo el agua tibia — espuma, gotas en cámara lenta. Último frame: logo + handle.</span></div>
+      <div class="beat-row"><span class="beat-label">Audio</span><span class="beat-value audio">"¿Te gustaría convertir tu baño en tu propio ritual?"</span></div>
+      <div class="beat-row"><span class="beat-label">Texto</span><span class="beat-value texto">"Kronos · Jabón Orgánico &amp; Ritual — @kronosritual"</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SLIDE 7 · TARJETA AGUA — VARIACIONES -->
+<div class="slide s-dark" data-index="7">
+  <div class="tarjetas-header section-inner" style="max-width:960px;">
+    <p class="eyebrow">Para Decidir</p>
+    <h2 class="section-title">Tarjeta Agua — Variaciones</h2>
+    <div class="divider" style="margin:0 auto 0;"></div>
+  </div>
+  <div class="tarjeta-pair">
+    <div class="tarjeta-col">
+      <img src="Propuestas-tarjetas-elementos/tarjetas-elementos/tarjeta-agua-variacion1.png" class="tarjeta-img" alt="Tarjeta Agua — Variación 1">
+      <p class="tarjeta-side">Variación 1</p>
+    </div>
+    <div class="tarjeta-col">
+      <img src="Propuestas-tarjetas-elementos/tarjetas-elementos/tarjeta-agua-variacion2.png" class="tarjeta-img" alt="Tarjeta Agua — Variación 2">
+      <p class="tarjeta-side">Variación 2</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8 · PROPUESTA ÍCONO SIGNOS ZODIACALES -->
+<div class="slide s-dark" data-index="8">
+  <div class="signos-header section-inner" style="max-width:960px;">
+    <p class="eyebrow">Para Decidir</p>
+    <h2 class="section-title">Propuesta de Ícono — Signos Zodiacales</h2>
+    <div class="divider" style="margin:0 auto 0;"></div>
+  </div>
+  <div class="zodiaco-wrap">
+    <img src="propuestas-zodiaco/propuestas-zodiaco.png" class="zodiaco-img" alt="4 propuestas de ícono de signo zodiacal integrado a la marca Kronos">
+  </div>
+</div>
+
+<!-- SLIDE 9 · CIERRE -->
+<div class="slide s-cierre" data-index="9">
+  <img src="assets-propuesta-iconos/logo-sin-fondo-dorado.png" class="cierre-logo" alt="Kronos">
+  <div class="cierre-line"></div>
+  <p class="cierre-text">El cielo toca tu piel</p>
+  <p class="cierre-contact">Mujer Alquímica Digital · 2026</p>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dotsEl = document.getElementById('dots');
+  const counterEl = document.getElementById('counter');
+  let cur = 0;
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' on' : '');
+    d.onclick = () => go(i);
+    dotsEl.appendChild(d);
+  });
+
+  function updateCounter() {
+    counterEl.textContent = (cur + 1) + ' / ' + slides.length;
+  }
+
+  function go(n) {
+    slides[cur].querySelectorAll('video').forEach(v => v.pause());
+    slides[cur].classList.remove('active');
+    dotsEl.children[cur].classList.remove('on');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dotsEl.children[cur].classList.add('on');
+    updateCounter();
+  }
+
+  document.getElementById('prev').onclick = () => go(cur - 1);
+  document.getElementById('next').onclick = () => go(cur + 1);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(cur + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(cur - 1);
+  });
+
+  updateCounter();
+</script>
+</body>
+</html>
