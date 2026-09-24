@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kronos — Toca tu piel</title>
+<meta name="description" content="Kronos: jabón orgánico y ritual, calibrado por elemento. Agua, Fuego, Aire y Tierra. Un kit hecho para tu elemento.">
+<link rel="icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="stars" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#top" class="nav__brand">
+      <img src="assets/img/logo.png" alt="Kronos" class="nav__logo">
+    </a>
+    <button class="nav__burger" id="navBurger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav__links" id="navLinks">
+      <a href="#historia">La historia</a>
+      <a href="#elementos">Elementos</a>
+      <a href="#kit-completo">Cómo comprar</a>
+      <a href="https://www.instagram.com/kronosritual/" target="_blank" rel="noopener" class="nav__ig">@kronosritual</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero__bg" style="background-image:url('assets/img/hero-banner.jpg')"></div>
+  <div class="hero__scrim"></div>
+
+  <div class="hero__content">
+    <div class="hero__logo-wrap">
+      <img src="assets/img/logo.png" alt="Kronos" class="hero__logo-img">
+      <div class="hero__logo-shine" style="-webkit-mask-image:url('assets/img/logo.png'); mask-image:url('assets/img/logo.png');"></div>
+    </div>
+    <a href="#elementos" class="btn btn--gold hero__cta">Descubre tu elemento</a>
+  </div>
+
+  <a href="#historia" class="hero__scrollcue" aria-label="Bajar">
+    <span></span>
+  </a>
+</section>
+
+<!-- ============ HISTORIA / ORIGEN ============ -->
+<section class="origin" id="historia">
+  <div class="origin__texture" style="background-image:url('assets/img/textura-universo.jpg')"></div>
+
+  <div class="section-kicker">01 · La historia</div>
+
+  <div class="origin__grid">
+    <div class="origin__media reveal">
+      <div class="origin__portrait-frame">
+        <img src="assets/img/flor-foto.jpg" alt="Flor, fundadora de Kronos" class="origin__portrait">
+      </div>
+      <div class="origin__thumbs">
+        <img src="assets/img/ritual-preparacion.jpg" alt="Ritual de preparación de los jabones Kronos">
+        <img src="assets/img/flor-toma-superior.jpg" alt="Flor elaborando jabones, toma superior">
+      </div>
+    </div>
+
+    <div class="origin__text reveal">
+      <h2>Así nace Kronos</h2>
+
+      <div class="audio-player" id="audioPlayer">
+        <button class="audio-player__btn" id="audioToggle" aria-label="Reproducir narración de Flor" data-state="paused">
+          <svg class="icon-play" viewBox="0 0 24 24" width="18" height="18"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" width="18" height="18" hidden><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg>
+        </button>
+        <div class="audio-player__track" id="audioTrack">
+          <div class="audio-player__progress" id="audioProgress"></div>
+        </div>
+        <span class="audio-player__label" id="audioLabel">Escúchalo en la voz de Flor</span>
+        <audio id="originAudio" preload="none" src="assets/audio/como-nace-kronos-vo.mp3"></audio>
+      </div>
+
+      <div class="origin__story" id="storyText">
+        <p data-seg="0">Crecí creyendo que mi lugar era servir. Que mi valor estaba en lo que hacía por los demás, no en lo que yo era. Regalé mi creatividad. Regalé mis ideas. Regalé años enteros a proyectos que no eran míos.</p>
+        <p data-seg="1">Viví una relación que me enseñó lo que no quería volver a vivir. Y mi cuerpo empezó a hablar de lo que yo no me atrevía a decir en voz alta.</p>
+
+        <p class="origin__pull-quote">Despertó el Kronos que había en mí.</p>
+
+        <p data-seg="2">Empecé por mis propias manos. Sal, canela, una vela encendida, y la intención de volver a mí. No sabía que ahí estaba naciendo algo más grande que un jabón.</p>
+        <p data-seg="3">Cada jabón que hago hoy lleva esa misma intención. No es solo cuidar la piel — es un ritual para volver a casa, a una misma. Por eso Kronos no es un jabón cualquiera. Es el puente entre lo que soy por dentro y lo que toco todos los días con mis manos.</p>
+      </div>
+
+      <p class="origin__signature">— Flor, fundadora de Kronos</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE DIVIDER ============ -->
+<section class="divider">
+  <img src="assets/img/icono-kronos.png" alt="" class="divider__icon">
+  <p class="divider__quote">Kronos une el cielo con tus manos.</p>
+</section>
+
+<!-- ============ ELEMENTOS ============ -->
+<section class="elements" id="elementos">
+  <div class="elements__tint" id="elementsTint"></div>
+
+  <div class="elements__content">
+    <div class="section-kicker">02 · Elige tu elemento</div>
+    <h2 class="elements__title">Un kit hecho para tu elemento</h2>
+    <p class="elements__subtitle">Cuatro energías, cuatro rituales. Toca la imagen para ver el kit completo.</p>
+
+    <div class="elements__tabs" id="elementTabs" role="tablist">
+      <!-- filled by JS -->
+    </div>
+
+    <div class="elements__stage" id="elementsStage">
+      <div class="stage__media" id="stageMedia" role="button" tabindex="0" aria-label="Toca para ver el kit completo">
+        <img src="assets/img/jabon-agua.jpg" alt="" class="stage__img stage__img--soap is-active" id="imgSoap">
+        <img src="assets/img/kit-agua.jpg" alt="" class="stage__img stage__img--kit" id="imgKit">
+        <span class="stage__hint" id="stageHint">Toca para ver el kit ✦</span>
+        <span class="stage__badge" id="stageBadge">El jabón</span>
+        <span class="stage__swap-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M7 7h11l-3.2-3.2M17 17H6l3.2 3.2" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+
+      <div class="stage__details" id="stageDetails">
+        <span class="stage__eyebrow" id="stageEyebrow">Elemento Agua</span>
+        <p class="stage__question" id="stageQuestion">¿Te ha pasado que una canción, un olor o un recuerdo te hacen llorar sin razón aparente?</p>
+
+        <div class="stage__signs" id="stageSigns"></div>
+
+        <a href="https://www.instagram.com/kronosritual/" target="_blank" rel="noopener" class="btn btn--outline-gold" id="stageCta">
+          Escríbenos por tu kit de Agua
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KIT 4 ELEMENTOS ============ -->
+<section class="bundle" id="kit-completo">
+  <div class="section-kicker section-kicker--light">03 · Cómo adquirir tu ritual</div>
+  <h2 class="bundle__title">Elige cómo quieres vivirlo</h2>
+
+  <div class="options">
+    <div class="option-card reveal">
+      <div class="option-card__media">
+        <img src="assets/img/kit-agua.jpg" alt="Kit por elemento Kronos" id="optionSingleImg">
+      </div>
+      <div class="option-card__body">
+        <span class="option-card__eyebrow">Opción 1</span>
+        <h3>Kit por Elemento</h3>
+        <p>El ritual diseñado para tu energía específica.</p>
+        <ul>
+          <li>1 jabón diseñado para tu elemento</li>
+          <li>Vela personalizada según el elemento</li>
+          <li>Tarjeta ritual con tu código Grabovoi y una frase Ho'oponopono diseñada para trabajar tu energía</li>
+          <li>Código QR con música para anclar tu frecuencia en el ritual</li>
+        </ul>
+        <a href="#elementos" class="btn btn--outline-gold">Elige tu elemento</a>
+      </div>
+    </div>
+
+    <div class="option-card reveal">
+      <div class="option-card__media">
+        <img src="assets/img/kit-4-elementos.jpg" alt="Kit 4 Elementos Kronos, los cuatro jabones y su vela" id="optionBundleImg">
+      </div>
+      <div class="option-card__body">
+        <span class="option-card__eyebrow">Opción 2</span>
+        <h3>Kit 4 Elementos</h3>
+        <p>La versión completa del ritual Kronos, para quien quiere tocar todos los elementos a la vez.</p>
+        <ul>
+          <li>4 jabones orgánicos, uno por elemento</li>
+          <li>Vela personalizada</li>
+          <li>Tarjeta ritual con tu código Grabovoi y una frase Ho'oponopono diseñada para trabajar estos cuatro elementos</li>
+          <li>Código QR con música para anclar tu frecuencia en el ritual</li>
+        </ul>
+        <a href="https://www.instagram.com/kronosritual/" target="_blank" rel="noopener" class="btn btn--gold">
+          Quiero el Kit 4 Elementos
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <img src="assets/img/logo.png" alt="Kronos — El cielo toca tu piel" class="site-footer__logo">
+  <a href="https://www.instagram.com/kronosritual/" target="_blank" rel="noopener" class="site-footer__ig">@kronosritual</a>
+  <p class="site-footer__legal">Kronos® · Marca registrada</p>
+  <p class="site-footer__credit">Elaborado por Mujer Alquímica Digital · 2026 · @mujeralquimicadigital</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
