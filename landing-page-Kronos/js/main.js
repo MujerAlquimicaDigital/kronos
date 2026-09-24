@@ -149,6 +149,7 @@
       kit: 'assets/img/kit-agua.jpg',
       question: '¿Te ha pasado que una canción, un olor o un recuerdo te hacen llorar sin razón aparente? ¿Sientes las emociones de los demás como si fueran tuyas?',
       signs: [{ n: 'Cáncer', g: '♋' }, { n: 'Escorpio', g: '♏' }, { n: 'Piscis', g: '♓' }],
+      description: 'El agua es la matriz de la emoción y la intuición que une a Cáncer, Escorpio y Piscis. Cáncer nutre el refugio del alma y la memoria; Escorpio alquimiza la sombra a través de la transformación profunda; y Piscis disuelve los límites en una compasión universal. Juntos, representan el viaje sanador de sentir, renacer y fluir con el inconsciente cósmico.',
       ingredient: 'Manzanilla',
       grabovoi: '5148214',
       closing: 'El agua ya fluyó.',
@@ -162,6 +163,7 @@
       kit: 'assets/img/kit-fuego.jpg',
       question: '¿Te ha pasado que actúas antes de pensar, como si algo te empujara?',
       signs: [{ n: 'Aries', g: '♈' }, { n: 'Leo', g: '♌' }, { n: 'Sagitario', g: '♐' }],
+      description: 'El fuego es la chispa vital y creadora que impulsa a Aries, Leo y Sagitario. Aries enciende el coraje de la acción y el inicio; Leo irradia la soberanía creativa y el calor del corazón; y Sagitario expande la conciencia en busca de la verdad y la fe. Juntos, encarnan el poder espiritual de iluminar, arder y transformar la voluntad en propósito.',
       ingredient: 'Canela, bergamota, vitamina E, semilla de uva',
       grabovoi: '9158721',
       closing: 'El fuego ya se encendió.',
@@ -175,6 +177,7 @@
       kit: 'assets/img/kit-aire.jpg',
       question: '¿Te cuesta quedarte quieto en una sola idea, un solo lugar, un solo plan?',
       signs: [{ n: 'Géminis', g: '♊' }, { n: 'Libra', g: '♎' }, { n: 'Acuario', g: '♒' }],
+      description: 'El aire es el aliento mental y vincular que anima a Géminis, Libra y Acuario. Géminis poliniza el mundo con ideas y adaptabilidad; Libra equilibra la armonía y la belleza en el encuentro con el otro; y Acuario revoluciona el futuro con visión colectiva. Juntos, representan la libertad de pensar, conectar y elevar la conciencia a través de la perspectiva.',
       ingredient: 'Lavanda',
       grabovoi: '52483317',
       closing: 'El aire ya se despejó.',
@@ -188,6 +191,7 @@
       kit: 'assets/img/kit-tierra.jpg',
       question: '¿Eres de las personas que le gusta tener todo bajo control y le cuesta cambiar de planes o salir de la rutina?',
       signs: [{ n: 'Tauro', g: '♉' }, { n: 'Virgo', g: '♍' }, { n: 'Capricornio', g: '♑' }],
+      description: 'La tierra es el sustrato material y sagrado que sostiene a Tauro, Virgo y Capricornio. Tauro arraiga la abundancia y el disfrute sensorial; Virgo cultiva el discernimiento y el servicio consciente; y Capricornio esculpe la disciplina y la maestría del tiempo. Juntos, encarnan el arte de manifestar lo divino en la materia y construir legados con alma.',
       ingredient: 'Cacao',
       grabovoi: null, // pendiente: no se pudo leer en la foto del mockup — confirmar con Flor
       closing: 'La tierra ya se activó.',
@@ -204,6 +208,7 @@
   const stageEyebrow = document.getElementById('stageEyebrow');
   const stageQuestion = document.getElementById('stageQuestion');
   const stageSigns = document.getElementById('stageSigns');
+  const stageDescription = document.getElementById('stageDescription');
   const stageCta = document.getElementById('stageCta');
   const stageDetails = document.getElementById('stageDetails');
   const elementsTint = document.getElementById('elementsTint');
@@ -250,6 +255,8 @@
     stageSigns.innerHTML = el.signs.map(s =>
       `<span class="sign-pill"><span class="glyph">${s.g}</span>${s.n}</span>`
     ).join('');
+
+    stageDescription.textContent = el.description;
 
     renderTabs();
   }
