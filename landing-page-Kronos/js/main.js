@@ -94,7 +94,6 @@
   audioToggle.addEventListener('click', () => {
     if (!audioAvailable) return;
     if (audio.paused) {
-      hasStarted = true;
       audioLabel.textContent = 'Escuchando a Flor…';
       audio.play().catch(() => {
         audioAvailable = false;
